@@ -15,7 +15,7 @@
 /*====================
  *   PARAMETER JOYSTIC
  *====================*/
-#define JOY_DEADZONE 20
+#define JOY_DEADZONE 10
 #define JOY_CENTER
 /*====================
  *     SYSTEM

@@ -82,7 +82,6 @@ void joystick_Read(Joystick_Data* joy) {
         deviation_y = 0;
     }
     
-    // ✅ CORRECTION : Calculer les plages réelles dynamiquement
     // Plage positive = distance du centre jusqu'à 1023
     // Plage négative = distance du centre jusqu'à 0
     int16_t max_positive_x = 1023 - joy->center_X;  // Ex: 1023 - 518 = 505
