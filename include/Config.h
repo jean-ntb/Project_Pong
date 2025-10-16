@@ -4,6 +4,7 @@
  *====================*/
 #define PIN_SERVO_X A2
 #define PIN_SERVO_Y 9
+#define PIN_BUTTON 8
 /*====================
  *   PARAMETER SERVO
  *====================*/

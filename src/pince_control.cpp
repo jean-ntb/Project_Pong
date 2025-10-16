@@ -25,7 +25,7 @@ void pince_lancer(Pince_Data* pince) {
     pince->pince_etat = PINCE_LANCEMENT;
 
     pince->Moteur_Pince.write(pince->angle_ouvert);
-        pince->pince_etat = OUVERT;
+    pince->pince_etat = OUVERT;
 
 }
 Etat_Pince pince_get_etat(Pince_Data * pince) {
