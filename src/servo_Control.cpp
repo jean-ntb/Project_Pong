@@ -4,7 +4,6 @@
  * ============================================================================
  * Module de pilotage servo-moteur continu FS5103R
  */
-
 #include <servo_Control.h>
 #include <Arduino.h>
 #include  <Config.h>
@@ -18,7 +17,6 @@ void servo_Init(Servo_Data* servo, int pin) {
     servo->Motor_Servo.writeMicroseconds(servo->neutral_pwm);
     Serial.println(pin);
 }
-
 void servo_SetSpeed(Servo_Data*servo, int speed) {
     // Limiter
     if (speed > 100) speed = 100;
@@ -36,7 +34,6 @@ void servo_SetSpeed(Servo_Data*servo, int speed) {
     else {
         pwm_value = map(speed, -100, 0, servo->min_pwm, servo->neutral_pwm);
     }
-    
     servo->Motor_Servo.writeMicroseconds(pwm_value);
 }
 

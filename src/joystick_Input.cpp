@@ -12,19 +12,13 @@ void joystick_Init(Joystick_Data* joy, uint8_t pin_x, uint8_t pin_y, uint8_t pin
     joy->pin_X = pin_x;
     joy->pin_Y= pin_y;
     joy->pin_button = pin_button;
-    
-    // Valeurs par défaut
-    joy->center_X = 518;
-    joy->center_Y = 502;
-    joy->dead_Zone = JOY_DEADZONE;  // Zone morte de 50
-    
+    joy->dead_Zone = JOY_DEADZONE;  
     // Initialiser les valeurs
     joy->raw_X = 0;
     joy->raw_Y = 0;
     joy->speed_X = 0;
     joy->speed_Y = 0;
-    joy->button_Pressed = false;
-    
+
     // Configurer le pin du bouton en INPUT_PULLUP
     if (pin_button != 255) {  // 255 = pas de bouton
         pinMode(pin_button, INPUT_PULLUP);
@@ -97,7 +91,7 @@ void joystick_Read(Joystick_Data* joy) {
         // Droite : utiliser la plage positive réelle
         joy->speed_X = map(deviation_x, 
                           joy->dead_Zone,      // Début : deadzone
-                          max_positive_x,      // ✅ Fin : plage réelle
+                          max_positive_x,     
                           0,                   // Vitesse min
                           100);                // Vitesse max
         // Sécurité : limiter à 100
@@ -106,7 +100,7 @@ void joystick_Read(Joystick_Data* joy) {
     else {
         // Gauche : utiliser la plage négative réelle
         joy->speed_X = map(deviation_x, 
-                          -max_negative_x,     // ✅ Début : plage réelle
+                          -max_negative_x,    
                           -joy->dead_Zone,     // Fin : deadzone
                           -100,                // Vitesse min
                           0);                  // Vitesse max
@@ -137,10 +131,7 @@ void joystick_Read(Joystick_Data* joy) {
         if (joy->speed_Y < -100) joy->speed_Y = -100;
     }
     
-    // Lire le bouton (si présent)
-    if (joy->pin_button != 255) {
-        joy->button_Pressed = (digitalRead(joy->pin_button) == LOW);
-    }
+   
 }
 
 // Obtenir la vitesse X
@@ -153,7 +144,3 @@ int16_t joystick_GetSpeedY(Joystick_Data* joy) {
     return joy->speed_Y;
 }
 
-// Vérifier si le bouton est appuyé
-bool joystick_IsButtonPressed(Joystick_Data* joy) {
-    return joy->button_Pressed;
-}
