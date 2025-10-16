@@ -12,18 +12,18 @@ void button_Init(Button_Data* btn) {
 }
 
 void button_Update(Button_Data* btn) {
-    // Lecture de l'état actuel de la broche
-    // Avec INPUT_PULLUP : LOW = bouton appuyé, HIGH = bouton relâché
     int lecture = digitalRead(btn->pin);
+    btn->etat_precedent = btn->etat_actuel;
     
-    // Détection d'un front descendant (transition HIGH -> PRESSED)
-    if (btn->etat_actuel == HIGH && lecture == LOW) {
+    // Détection d'un front descendant (BTN_RELEASED -> BTN_PRESSED)
+    if (btn->etat_actuel == BTN_RELEASED && lecture == LOW) {
         btn->etat_actuel = BTN_PRESSED;
         btn->appuie_detect = true;
     }
-    // Détection d'un front montant (transition PRESSED -> HIGH)
+    // Détection d'un front montant (BTN_PRESSED -> BTN_RELEASED)
     else if (btn->etat_actuel == BTN_PRESSED && lecture == HIGH) {
         btn->etat_actuel = BTN_RELEASED;
+        btn->relache_detect = true;  // ✅ Flag de relâchement
     }
 }
 
@@ -36,6 +36,13 @@ bool button_AppuiDetecte(Button_Data* btn) {
     // Retourne true une seule fois par appui
     if (btn->appuie_detect) {
         btn->appuie_detect = false;  // Réinitialisation du flag
+        return true;
+    }
+    return false;
+}
+bool button_RelacheDetecte(Button_Data* btn) {
+    if (btn->relache_detect) {
+        btn->relache_detect = false;
         return true;
     }
     return false;

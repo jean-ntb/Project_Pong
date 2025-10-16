@@ -4,7 +4,7 @@
 void pince_Init(Pince_Data* pince){
     pince->angle_fermer = 0;
     pince->angle_ouvert = 90;
-    pince->angle_ouvert = 180;
+    pince->angle_fermer = 180;
     pince->pince_etat = OUVERT;
     pince->Moteur_Pince.attach(PIN_SERVO_Y);
     pince->Moteur_Pince.write(pince->angle_ouvert);
