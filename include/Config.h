@@ -8,7 +8,7 @@
 /*====================
  *   PARAMETER SERVO
  *====================*/
-#define SERVO_NEUTRAL_PWM 1480
+#define SERVO_NEUTRAL_PWM 1490
 #define SERVO_MIN_PWM 1000
 #define SEVRVO_MAX_PWM 2000
 /*====================

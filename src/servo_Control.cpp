@@ -21,6 +21,10 @@ void servo_SetSpeed(Servo_Data*servo, int speed) {
     // Limiter
     if (speed > 100) speed = 100;
     if (speed < -100) speed = -100;
+     if (speed >= -2 && speed <= 2) {
+        speed = 0;
+    }
+    
     servo->current_speed = speed;
     // Conversion vitesse → PWM
     int pwm_value;
