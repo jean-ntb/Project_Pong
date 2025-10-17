@@ -15,9 +15,7 @@ struct Pince_Data{
     float angle_ouvert;
     float angle_fermer;
     float angle_lancer;
-
     Etat_Pince pince_etat;
-
 };
 
 void pince_Init(Pince_Data* pince);
